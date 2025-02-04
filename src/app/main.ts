@@ -8,12 +8,22 @@ import { ValidationPipe } from '@nestjs/common';
 const logger = new InternalLogger('App');
 
 process.on('unhandledRejection', (reason: any, promise: any) => {
-  logger.error(reason, promise);
+  if (reason instanceof Error) {
+    logger.error(reason.message, reason.stack);
+  } else {
+    logger.error('Unhandled rejection reason:', reason);
+  }
+
+  logger.error('Promise:', promise);
   process.exit(1);
 });
 
 process.on('uncaughtException', (error: Error, source: any) => {
-  logger.error(error, source);
+  if (error instanceof Error) {
+    logger.error(error.message, error.stack);
+  } else {
+    logger.error('Uncaught exception:', source);
+  }
   process.exit(1);
 });
 

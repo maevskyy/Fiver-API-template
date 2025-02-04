@@ -24,6 +24,8 @@ export class ExceptionFilter extends BaseExceptionFilter implements NestExceptio
         let statusCode: number;
         let errorResponse: IInternalError;
 
+        this.logger.error(exception)
+
         if (exception instanceof HttpException) {
             statusCode = exception.getStatus();
             const errorMessage = exception.getResponse();
@@ -64,10 +66,10 @@ export class ExceptionFilter extends BaseExceptionFilter implements NestExceptio
         //     `[${method}] ${url} ${response.statusCode} ${id} message: ${errorResponse.errorMessage}`,
         // );
 
-        return response.status(statusCode).send({
-            statusCode,
-            ts: Math.floor(Date.now() / 1000),
-            result: errorResponse,
-        });
+        // return response.status(statusCode).send({
+        //     statusCode,
+        //     ts: Math.floor(Date.now() / 1000),
+        //     result: errorResponse,
+        // });
     }
 }

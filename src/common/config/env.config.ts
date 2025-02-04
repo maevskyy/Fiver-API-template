@@ -8,6 +8,26 @@ interface IPostgresSQLEnvs {
     password: string;
 }
 
+interface ITelegramEnvs {
+    token: string
+}
+
+interface IRedisDbEnvs {
+    host: string;
+    port: number;
+    user: string;
+    password: string;
+    database: number;
+    sharedDatabase: number;
+};
+
+interface ISupabaseDBEnvs {
+    key: string;
+    url: string
+}
+
+
+
 export interface IConfig {
     nodeEnv: string;
     app: {
@@ -16,17 +36,22 @@ export interface IConfig {
     };
     db: {
         postgres: IPostgresSQLEnvs;
+        redis: IRedisDbEnvs;
+        supabase: ISupabaseDBEnvs;
     };
     settings: {
         logFormat: string;
         clientHosts: string
 
-    }
+    },
+    telegram: ITelegramEnvs
 }
 
 export const internalConfig: IConfig = {
     nodeEnv: nodeConfig.get('nodeEnv'),
     app: nodeConfig.get('app'),
     db: nodeConfig.get('db'),
-    settings: nodeConfig.get('settings')
+    settings: nodeConfig.get('settings'),
+    telegram: nodeConfig.get('telegram')
+
 };

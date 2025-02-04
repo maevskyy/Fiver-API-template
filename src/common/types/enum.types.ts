@@ -7,3 +7,9 @@ export enum UsersEndpoitEnum {
     UPDATE_ONE = 'id',
     DELETE_ONE = ':id'
 }   
+
+export enum ERedisKeys {
+    GLOBAL_APP_STATUS = 'app_status',
+    GLOBAL_LINK = 'config_global_link',
+    GLOBAL_TIMER = 'config_global_timer'
+}

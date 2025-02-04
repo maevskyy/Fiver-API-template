@@ -13,10 +13,10 @@ const providers = [
         provide: 'APP_LOGGER',
         useClass: PinoLogger,
     },
-    {
-        provide: APP_INTERCEPTOR,
-        useClass: LoggerInterceptor,
-    },
+    // {
+    //     provide: APP_INTERCEPTOR,
+    //     useClass: LoggerInterceptor,
+    // },
     {
         provide: APP_FILTER,
         useClass: ExceptionFilter,

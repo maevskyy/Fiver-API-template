@@ -1,15 +1,43 @@
-version: '3.8'
+# version: '3.8'
+
+# services:
+#   app:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     container_name: nestjs_app
+#     restart: always
+#     ports:
+#       - '8001:8001' 
+#     environment:
+#       NODE_ENV: development
+#       APP_NAME: userservice
+#       APP_PORT: 8001
+      
+#       POSTGRES_DB: mydatabase
+#       POSTGRES_PORT: 5551
+#       POSTGRES_HOST: localhost
+#       POSTGRES_USER: test
+#       POSTGRES_PASSWORD: test
+
+#       LOG_FORMAT: detailed
+#       CLIENT_HOSTS: https://yourfrontenddomain.com
+
+#     volumes:
+#       - .:/app 
+#     command: pnpm run start:prod
+
+# version: '3.8'
 
 services:
-  user-service:
-    build:
-      context: .  
-      dockerfile: Dockerfile  
-    container_name: user-service  
+  redis:
+    image: redis:latest 
+    container_name: redis_container
     ports:
-      - "3000:3000"  
-    env_file:
-      - ".env"
+      - "6379:6379" 
     volumes:
-      - .:/app  
+      - redis_data:/data 
     restart: always 
+
+volumes:
+  redis_data: 
